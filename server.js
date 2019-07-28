@@ -2,6 +2,8 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const path = require('path');
+const axios = require("axios");
+const cheerio = require("cheerio");
 
 const PORT = process.env.PORT || 8080;
 
@@ -10,7 +12,6 @@ app.use(express.json());
 
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, 'client/build')));
-
 
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/scraper_stash";
 
