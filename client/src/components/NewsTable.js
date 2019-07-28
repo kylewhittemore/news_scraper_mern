@@ -3,6 +3,19 @@ import Table from 'react-bootstrap/Table';
 
 const NewsTable = props => {
 
+    const articles = props.articles;
+
+    const buildArticleTable = articles => {
+        return (
+            articles.map((article, index) => (
+                <tr key={article.id}>
+                    <td>{index + 1}</td>
+                    <td>{article.title}</td>
+                    <td>{article.summary}</td>
+                </tr>
+            )))
+    }
+
     return (
         <Table className="align-self-center">
             <thead>
@@ -13,11 +26,7 @@ const NewsTable = props => {
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Snazzy Title From Medium</td>
-                    <td>This is where there would be a description, short and sweet.  I think that I would like to use Hackernoon or medium for the articles.</td>
-                </tr>
+                {buildArticleTable(articles)}
             </tbody>
         </Table>
     )
