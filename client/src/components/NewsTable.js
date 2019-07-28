@@ -1,7 +1,7 @@
 import React from 'react';
 import Table from 'react-bootstrap/Table';
 
-const NewsTable = () => {
+const NewsTable = props => {
 
     return (
         <Table className="align-self-center">
