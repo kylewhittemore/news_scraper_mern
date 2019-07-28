@@ -1,0 +1,28 @@
+{
+  "name": "news_scraper_mern",
+  "version": "1.0.0",
+  "description": "A MERN stack implementation of a simple news scraper",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "server": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kylewhittemore/news_scraper_mern.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kylewhittemore/news_scraper_mern/issues"
+  },
+  "homepage": "https://github.com/kylewhittemore/news_scraper_mern#readme",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.6.7",
+    "nodemon": "^1.19.1"
+  }
+}
