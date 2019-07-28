@@ -1,12 +1,16 @@
 const express = require('express');
 const app = express();
-const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const routes = require('./routes');
+const path = require('path');
 
-const PORT = 4000;
+const PORT = process.env.PORT || 8080;
 
-app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+// Serve static files from the React app
+app.use(express.static(path.join(__dirname, 'client/build')));
+
 
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/scraper_stash";
 
@@ -17,6 +21,7 @@ connection.once('open', function () {
     console.log("MongoDB database connection established successfully");
 });
 
+const routes = require('./routes');
 app.use('/', routes);
 
 app.listen(PORT, function () {
