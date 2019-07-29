@@ -1,4 +1,4 @@
-let Article = require('../../../models');
+let Article = require('../../../models/articleModel');
 
 module.exports = (req, res) => {
     Article.find(function (err, articles) {

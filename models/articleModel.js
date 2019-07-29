@@ -6,26 +6,26 @@ let Article = new Schema({
         type: String,
         required: true
     },
-    summary: {
+    // summary: {
+    //     type: String,
+    //     required: true
+    // },
+    link: {
         type: String,
         required: true
     },
-    URL: {
-        type: String,
-        required: true
-    },
-    byline: {
-        type: String,
-        required: true
-    },
-    comments: [
-        {
-          // Store ObjectIds in the array
-          type: Schema.Types.ObjectId,
-          // The ObjectIds will refer to the ids in the Note model
-          ref: "Coment"
-        }
-      ]
+    // byline: {
+    //     type: String,
+    //     required: true
+    // },
+    // comments: [
+    //     {
+    //       // Store ObjectIds in the array
+    //       type: Schema.Types.ObjectId,
+    //       // The ObjectIds will refer to the ids in the Note model
+    //       ref: "Coment"
+    //     }
+    //   ]
 });
 
 module.exports = mongoose.model('Article', Article)
