@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Welcome from './components/Welcome'
@@ -6,6 +6,7 @@ import ArticleTable from './components/ArticleTable'
 import CommentList from './components/CommentList'
 
 import './App.css';
+import Axios from 'axios';
 
 function App() {
 
@@ -65,8 +66,22 @@ function App() {
   ]
 
   const [comments, setComments] = useState(commentData)
-  const [articles, setArticles] = useState(articleData)
+  const [articles, setArticles] = useState([])
+ 
+  useEffect(() => {
+    async function fetchArticles() {
+      let response = await Axios.get('/api/articles');
+      let data = response.data
+      // console.log(data)
+      return data;
+    }
 
+    fetchArticles().then(data => {
+      setArticles(data)
+      console.log(data)
+    })
+
+  }, [])
   
 
   return (
