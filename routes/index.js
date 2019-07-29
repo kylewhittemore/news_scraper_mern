@@ -10,4 +10,7 @@ routes.use('/api/articles', articles)
 const comments = require('./api/comments')
 routes.use('/api/comments', comments)
 
+const scrape = require('./scrape')
+routes.use('/scrape', scrape)
+
 module.exports = routes;
