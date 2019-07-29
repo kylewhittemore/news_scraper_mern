@@ -27,6 +27,7 @@ const NewsTable = props => {
             </thead>
             <tbody>
                 {buildArticleTable(articles)}
+
             </tbody>
         </Table>
     )

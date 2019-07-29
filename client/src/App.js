@@ -67,17 +67,16 @@ function App() {
   const [comments, setComments] = useState(commentData)
   const [articles, setArticles] = useState(articleData)
 
-
+  
 
   return (
     <Container >
       <Welcome />
       <Row>
-        <NewsTable articles={articles} />
-      </Row>
-      <Row>
+        <NewsTable articles={articles} comments={comments}/>
         <CommentList comments={comments} />
       </Row>
+      
     </Container>
   );
 }
