@@ -1,7 +1,7 @@
 import React from 'react';
 import Table from 'react-bootstrap/Table';
 
-const NewsTable = props => {
+const ArticleTable = props => {
 
     const articles = props.articles;
 
@@ -33,4 +33,4 @@ const NewsTable = props => {
     )
 }
 
-export default NewsTable;
+export default ArticleTable;

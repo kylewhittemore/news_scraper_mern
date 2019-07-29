@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Welcome from './components/Welcome'
-import NewsTable from './components/NewsTable'
+import ArticleTable from './components/ArticleTable'
 import CommentList from './components/CommentList'
 
 import './App.css';
@@ -73,7 +73,7 @@ function App() {
     <Container >
       <Welcome />
       <Row>
-        <NewsTable articles={articles} comments={comments}/>
+        <ArticleTable articles={articles} comments={comments}/>
         <CommentList comments={comments} />
       </Row>
       
