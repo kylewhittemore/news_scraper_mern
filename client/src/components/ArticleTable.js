@@ -8,7 +8,7 @@ const ArticleTable = props => {
     const buildArticleTable = articles => {
         return (
             articles.map((article, index) => (
-                <tr key={article.id}>
+                <tr key={article._id}>
                     <td>{index + 1}</td>
                     <td>{article.title}</td>
                     <td>{article.summary}</td>
