@@ -6,6 +6,9 @@ const Axios = require('axios')
 
 module.exports = (req, res) => {
 
+    Article.create({title: "test1", link: "test2"})
+    
+
     const url = 'https://hackernoon.com';
 
     puppeteer
