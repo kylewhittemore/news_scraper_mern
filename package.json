@@ -1,7 +1,7 @@
 {
   "name": "news_scraper_mern",
   "engines": {
-    "node": "8.2.1"
+    "node": "10.15.3"
   },
   "version": "1.0.0",
   "description": "A MERN stack implementation of a simple news scraper",
