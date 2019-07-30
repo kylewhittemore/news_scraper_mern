@@ -1,6 +1,6 @@
 const scrape = require('express').Router();
-const getMediumData = require('./medium');
+const getHackerData = require('./hacker');
 
-scrape.get('/', getMediumData);
+scrape.get('/hacker', getHackerData);
 
 module.exports = scrape;
