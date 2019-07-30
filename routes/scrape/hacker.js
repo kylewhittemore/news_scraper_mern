@@ -11,7 +11,7 @@ module.exports = (req, res) => {
     const url = 'https://hackernoon.com';
 
     puppeteer
-        .launch({ args: ['--no-sandbox'] })
+        .launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] })
         .then(function (browser) {
             return browser.newPage();
         })
