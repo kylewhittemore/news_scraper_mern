@@ -2,6 +2,7 @@
 const $ = require("cheerio");
 const Article = require('../../models/articleModel');
 const puppeteer = require('puppeteer');
+const Axios = require('axios')
 
 module.exports = (req, res) => {
 
@@ -25,6 +26,10 @@ module.exports = (req, res) => {
                 result.title = $(this).children('.title').text();
                 result.link = "https://hackernoon.com" + $(this).children('.title').children('a').attr('href');
                 // console.log(result)
+
+                // Axios.post('/api/articles', result)
+                //     .then(response => console.log(response))
+                //     .catch(error => console.log(error))
 
                 // Create a new Article using the `result` object built from scraping
                 Article.create(result)

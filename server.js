@@ -13,7 +13,7 @@ app.use(express.json());
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, 'client/build')));
 
-const MONGODB_URI = process.env.MONGODB_URI || "mongodb://user:password1@ds245677.mlab.com:45677/heroku_s8pw3h8v";
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://user:password1@ds255917.mlab.com:55917/heroku_9mmg6k8r";
 // const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/scraper_stash";
 
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
