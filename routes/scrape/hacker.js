@@ -40,11 +40,11 @@ module.exports = (req, res) => {
             })
 
         })
-        .then(res.send("Scraped!"))
+        // .then(res.send("Scraped!"))
         .catch(function (err) {
             console.log(err)
         });
     // Send a message to the client
-    // res.send("Scrape Complete");
+    res.send("Scrape Complete");
 
 }
