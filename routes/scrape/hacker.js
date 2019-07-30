@@ -22,6 +22,7 @@ module.exports = (req, res) => {
         })
         .then(function (html) {
             // console.log(html);
+            //jshdkjshd
             $('.excerpt', html).each(function () {
                 let result = {};
                 
