@@ -11,6 +11,7 @@ const ArticleTable = props => {
                 <tr key={article._id}>
                     <td>{index + 1}</td>
                     <td><a href={article.link}>{article.title}</a></td>
+                    <td>comments</td>
                 </tr>
             )))
     }
@@ -21,6 +22,7 @@ const ArticleTable = props => {
                 <tr>
                     <th>#</th>
                     <th>Title</th>
+                    <th>Comments</th>
                 </tr>
             </thead>
             <tbody>

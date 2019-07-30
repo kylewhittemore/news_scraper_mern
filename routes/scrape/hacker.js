@@ -31,6 +31,7 @@ module.exports = (req, res) => {
                     .then(function (dbArticle) {
                         // View the added result in the console
                         console.log(dbArticle);
+                        // res.send("Scrape Complete");
                     })
                     .catch(function (err) {
                         // If an error occurred, log it
@@ -39,10 +40,11 @@ module.exports = (req, res) => {
             })
 
         })
+        .then(res.send("Scraped!"))
         .catch(function (err) {
             console.log(err)
         });
     // Send a message to the client
-    res.send("Scrape Complete");
+    // res.send("Scrape Complete");
 
 }

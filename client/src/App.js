@@ -36,9 +36,10 @@ function App() {
 
   const [comments, setComments] = useState(commentData)
   const [articles, setArticles] = useState([])
- 
+
   useEffect(() => {
     async function fetchArticles() {
+      // await Axios.get('/scrape/hacker');
       let response = await Axios.get('/api/articles');
       let data = response.data
       return data;
@@ -49,17 +50,20 @@ function App() {
       console.log(data)
     })
 
-  }, [])
-  
+  }, []);
+
+  const performScrape = () => {
+    Axios.get('/scrape/hacker')
+  }
 
   return (
     <Container >
-      <Welcome />
+      <Welcome performScrape={performScrape} />
       <Row>
-        <ArticleTable articles={articles} comments={comments}/>
+        <ArticleTable articles={articles} comments={comments} />
         <CommentList comments={comments} />
       </Row>
-      
+
     </Container>
   );
 }
