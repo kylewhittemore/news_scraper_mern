@@ -1,7 +1,7 @@
 import React from 'react';
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import Button from 'react-bootstrap/Button'
-import { PromiseProvider } from 'mongoose';
+// import { PromiseProvider } from 'mongoose';
 
 const Welcome = (props) => {
 
