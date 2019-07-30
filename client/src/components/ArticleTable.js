@@ -10,8 +10,7 @@ const ArticleTable = props => {
             articles.map((article, index) => (
                 <tr key={article.id}>
                     <td>{index + 1}</td>
-                    <td>{article.title}</td>
-                    <td>{article.summary}</td>
+                    <td><a href={article.link}>{article.title}</a></td>
                 </tr>
             )))
     }
@@ -22,7 +21,6 @@ const ArticleTable = props => {
                 <tr>
                     <th>#</th>
                     <th>Title</th>
-                    <th>Summary</th>
                 </tr>
             </thead>
             <tbody>
