@@ -1,14 +1,14 @@
 let Comment = require('../../../models/commentModel')
 
 module.exports = (req, res) => {
-    let newComment = new Comment(req.body);
-    newComment.save()
-        .then(comment => {
-            res.status(200).json({ 'comment': 'comment added successfully' });
 
-        })
-        .catch(err => {
-            res.status(400).send('adding a new comment failed')
-        });
-
+    Comment.create(req.body)
+    .then(function(dbComment){
+        return Article.findOneandUpdate(
+            { _id: req.params.id }, 
+            { comment: dbComment._id }, 
+            { new: true });
+    })
+    .then(dbArticle => res.json(dbArticle))
+    .catch(err => res.json(err))
 }

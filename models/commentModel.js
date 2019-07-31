@@ -2,11 +2,11 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 let Comment = new Schema({
-    name: {
+    header: {
         type: String,
         required: true
     },
-    comment: {
+    body: {
         type: String,
         required: true
     }

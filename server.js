@@ -2,8 +2,6 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const path = require('path');
-const axios = require("axios");
-const cheerio = require("cheerio");
 
 const PORT = process.env.PORT || 8080;
 
