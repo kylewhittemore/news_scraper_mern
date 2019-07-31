@@ -1,13 +1,15 @@
 const $ = require("cheerio");
 const Article = require('../../models/articleModel');
 const puppeteer = require('puppeteer');
+const Axios = require('axios');
 
 module.exports = (req, res) => {
 
     const url = 'https://hackernoon.com';
 
     async function popDB() {
-
+        // let currentArticles = await Axios.get('/api/articles')
+        // console.log("current Articles:" + currentArticles)
         await puppeteer
             .launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] })
             .then(function (browser) {
