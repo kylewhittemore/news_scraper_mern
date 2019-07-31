@@ -28,7 +28,7 @@ module.exports = (req, res) => {
 
                     Article.create(result)
                         .then(function (dbArticle) {
-                            console.log(dbArticle);
+                            // console.log(dbArticle);
                         })
                         .catch(function (err) {
                             console.log(err);

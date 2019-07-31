@@ -52,7 +52,6 @@ function App() {
 
     fetchArticles().then(data => {
       setArticles(data)
-      console.log(data)
     })
 
   }, []);
