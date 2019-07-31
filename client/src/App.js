@@ -40,7 +40,6 @@ function App() {
 
   useEffect(() => {
     async function fetchArticles() {
-      // await Axios.get('/scrape/hacker');
       let response = await Axios.get('/api/articles');
       let data = response.data
       return data;
@@ -62,7 +61,7 @@ function App() {
       <Welcome performScrape={performScrape} />
       <Row>
         <ArticleTable articles={articles} comments={comments} />
-        <CommentList comments={comments} />
+        {/* <CommentList comments={comments} /> */}
       </Row>
 
     </Container>
