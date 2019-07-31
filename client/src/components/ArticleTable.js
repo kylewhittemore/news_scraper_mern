@@ -12,17 +12,6 @@ const ArticleTable = props => {
         setShowComments(true)
     }
     
-    const buildArticleTable = articles => {
-        return (
-            articles.map((article, index) => (
-                <tr key={article._id}>
-                    <td>{index + 1}</td>
-                    <td><a href={article.link}>{article.title}</a></td>
-                    <td className="comment-link" onClick={expandRow}>author</td>
-                </tr>
-            )))
-    }
-
     return (
         <Table className="align-self-center">
             <thead>
@@ -33,7 +22,13 @@ const ArticleTable = props => {
                 </tr>
             </thead>
             <tbody>
-                {buildArticleTable(articles)}
+                {articles.map((article, index) => (
+                <tr key={article._id}>
+                    <td>{index + 1}</td>
+                    <td><a href={article.link}>{article.title}</a></td>
+                    <td className="comment-link" onClick={expandRow}>author</td>
+                </tr>
+            ))}
             </tbody>
         </Table>
     )
