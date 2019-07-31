@@ -4,6 +4,7 @@ import Row from 'react-bootstrap/Row'
 import Welcome from './components/Welcome'
 import ArticleTable from './components/ArticleTable'
 import CommentList from './components/CommentList'
+import LoadingSpinner from './components/LoadingSpinner'
 
 import './App.css';
 import Axios from 'axios';
@@ -36,22 +37,25 @@ function App() {
 
   const [comments, setComments] = useState(commentData)
   const [articles, setArticles] = useState([])
+  const [loading, setLoading] = useState(false)
 
-  async function performScrape () {
+  async function performScrape() {
     let msg = await Axios.get('/scrape/hacker')
     return msg
   }
-  
+
+
   useEffect(() => {
     async function fetchArticles() {
+      setLoading(true);
       await performScrape();
       let response = await Axios.get('/api/articles');
       let data = response.data
       return data;
     }
-
     fetchArticles().then(data => {
       setArticles(data)
+      setLoading(false)
     })
 
   }, []);
@@ -59,9 +63,9 @@ function App() {
 
   return (
     <Container >
-      <Welcome performScrape={performScrape} />
-      <Row>
-        <ArticleTable articles={articles} comments={comments} />
+      <Welcome />
+      <Row className="justify-content-center">
+        {loading ? <LoadingSpinner /> : <ArticleTable articles={articles} comments={comments} />}
         {/* <CommentList comments={comments} /> */}
       </Row>
 

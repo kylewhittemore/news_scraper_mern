@@ -1,4 +1,6 @@
 .comment-form {
     width: 100%;
-    
+}
+.comment-link {
+    cursor: pointer;
 }
