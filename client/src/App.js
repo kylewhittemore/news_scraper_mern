@@ -37,8 +37,9 @@ function App() {
   const [comments, setComments] = useState(commentData)
   const [articles, setArticles] = useState([])
 
-  const performScrape = () => {
-    Axios.get('/scrape/hacker')
+  async function performScrape () {
+    let msg = await Axios.get('/scrape/hacker')
+    return msg
   }
   
   useEffect(() => {
