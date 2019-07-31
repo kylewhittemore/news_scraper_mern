@@ -10,7 +10,6 @@ import Axios from 'axios';
 
 function App() {
 
-  //arbitrary change
   const commentData = [
     {
 
@@ -38,8 +37,13 @@ function App() {
   const [comments, setComments] = useState(commentData)
   const [articles, setArticles] = useState([])
 
+  const performScrape = () => {
+    Axios.get('/scrape/hacker')
+  }
+  
   useEffect(() => {
     async function fetchArticles() {
+      await performScrape();
       let response = await Axios.get('/api/articles');
       let data = response.data
       return data;
@@ -52,9 +56,6 @@ function App() {
 
   }, []);
 
-  const performScrape = () => {
-    Axios.get('/scrape/hacker')
-  }
 
   return (
     <Container >
