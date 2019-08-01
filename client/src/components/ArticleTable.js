@@ -9,7 +9,7 @@ const ArticleTable = props => {
     const [relevantComments, setRelevantComments] = useState([])
     // const [loading, setLoading] = useState(false)
 
-    const articles = props.articles;
+    // const [articles, setArticles] = useState(props.articles);
 
     useEffect(() => console.log(relevantComments), [relevantComments])
 
@@ -45,7 +45,6 @@ const ArticleTable = props => {
         return article
     }
 
-
     return (
         <Table className="align-self-center">
             <thead>
@@ -57,7 +56,7 @@ const ArticleTable = props => {
                 </tr>
             </thead>
             <tbody>
-                {articles.map((article, index) => (
+                {props.articles.map((article, index) => (
                     <tr key={article._id}>
                         <td>{index + 1}</td>
                         <td><a href={article.link}>{article.title}</a></td>

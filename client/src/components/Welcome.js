@@ -8,7 +8,9 @@ const Welcome = props => {
         <Jumbotron>
             <h2>Scraper Stash</h2>
             <p>scraping news since 2019</p>
-            <Button onClick={props.showFavorites}>Show Favorites</Button>
+            <Button onClick={() => {
+                props.getFavorites().then(data => console.log(data))
+                }}>Show Favorites</Button>
         </Jumbotron>
     )
 }
