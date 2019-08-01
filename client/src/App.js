@@ -45,6 +45,12 @@ function App() {
     return msg
   }
 
+  async function showFavorites() {
+    let favoriteArticles = await Axios.get('/api/articles/favs')
+    console.log(favoriteArticles)
+    await setArticles(favoriteArticles)
+    return favoriteArticles
+  }
 
   useEffect(() => {
     async function fetchArticles() {
@@ -64,7 +70,7 @@ function App() {
 
   return (
     <Container >
-      <Welcome />
+      <Welcome showFavorites={showFavorites} />
       <Row className="justify-content-center">
         {loading ? <LoadingSpinner /> : <ArticleTable articles={articles} />}
       </Row>
