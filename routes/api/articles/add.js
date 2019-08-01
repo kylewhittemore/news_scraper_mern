@@ -1,14 +1,13 @@
 let Article = require('../../../models/articleModel')
 
 module.exports = (req, res) => {
-    let newArticle = new Article(req.body);
-    newArticle.save()
+    Article.create(req.body)
         .then(article => {
-            res.status(200).json({ 'Article': 'Article added successfully' });
+            res.status(200).json(article);
 
         })
         .catch(err => {
-            res.status(400).send('adding a new Article failed')
+            res.status(400).send(err)
         });
 
 }

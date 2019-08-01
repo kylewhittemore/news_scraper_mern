@@ -9,12 +9,12 @@ let Article = new Schema({
             unique: true
         }
     },
-    // summary: {
-    //     type: String,
-    //     required: true
-    // },
     link: {
         type: String,
+        required: true
+    },
+    isFavorite: {
+        type: Boolean,
         required: true
     },
     // byline: {

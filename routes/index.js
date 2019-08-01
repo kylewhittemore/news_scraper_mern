@@ -7,9 +7,6 @@ routes.get("/api", function (req, res) {
 const articles = require('./api/articles')
 routes.use('/api/articles', articles)
 
-const comments = require('./api/comments')
-routes.use('/api/comments', comments)
-
 const scrape = require('./scrape')
 routes.use('/scrape', scrape)
 
