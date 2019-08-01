@@ -1,7 +1,6 @@
 const $ = require("cheerio");
 const Article = require('../../models/articleModel');
 const puppeteer = require('puppeteer');
-const Axios = require('axios');
 
 module.exports = (req, res) => {
 

@@ -1,6 +1,5 @@
 const articles = require('express').Router();
 const all = require('./getAll');
-const add = require('./add');
 const getById = require('./getByID');
 const updateById = require('./updateByID');
 
