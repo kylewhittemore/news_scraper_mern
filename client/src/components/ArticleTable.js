@@ -31,6 +31,20 @@ const ArticleTable = props => {
         return commentArr
     }
 
+    async function addToFavorites(id) {
+        console.log(id)
+
+        let article = await Axios({
+            method: 'put',
+            url: `/api/articles/${id}`,
+            data: {
+                isFavorite: true
+            }
+        });
+
+        return article
+    }
+
 
     return (
         <Table className="align-self-center">
@@ -38,7 +52,8 @@ const ArticleTable = props => {
                 <tr>
                     <th>#</th>
                     <th>Title</th>
-                    <th>Comments</th>
+                    <th>View Comments</th>
+                    <th>Add to Favorites</th>
                 </tr>
             </thead>
             <tbody>
@@ -52,7 +67,10 @@ const ArticleTable = props => {
                                     let comments = await getComments(data)
                                     setRelevantComments(comments)
                                 })
-                        }}>author</td>
+                        }}>View Comments</td>
+                        <td className="favorite-link" onClick={() => {
+                            addToFavorites(article._id).then(data => console.log(data))
+                        }}>Add to Favorites</td>
                     </tr>
                 ))}
             </tbody>
