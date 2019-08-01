@@ -4,6 +4,7 @@ const getById = require('./getByID');
 const addCommentById = require('./addCommentByID');
 const updateArticleById = require('./updateArticleById');
 const getFavorites = require('./getFavorites');
+const getCommentById = require('./getCommentById');
 
 // Tested wroking
 // Get all articles
@@ -24,6 +25,9 @@ articles.post('/:id', addCommentById);
 // Tested working
 // Generic route for updating a, article, used for setting it as a favorite
 articles.put('/:id', updateArticleById);
+
+
+articles.get('/comments/:id', getCommentById)
 
 
 module.exports = articles;
