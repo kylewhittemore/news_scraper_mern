@@ -8,8 +8,7 @@ module.exports = (req, res) => {
     const url = 'https://hackernoon.com';
 
     async function popDB() {
-        // let currentArticles = await Axios.get('/api/articles')
-        // console.log("current Articles:" + currentArticles)
+
         await puppeteer
             .launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] })
             .then(function (browser) {
@@ -27,6 +26,7 @@ module.exports = (req, res) => {
 
                     result.title = $(this).children('.title').text();
                     result.link = "https://hackernoon.com" + $(this).children('.title').children('a').attr('href');
+                    result.isFavorite = false;
 
                     Article.create(result)
                         .then(function (dbArticle) {
