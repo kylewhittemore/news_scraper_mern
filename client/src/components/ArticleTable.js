@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Table from 'react-bootstrap/Table';
-import AddCommentModal from './addCommentModal';
+import AddCommentModal from './AddCommentModal';
+import CommentsModal from './CommentsModal'
 
 // import CommentList from './CommentList';
 import Axios from 'axios';
@@ -13,6 +14,10 @@ const ArticleTable = props => {
     const [addCommentModalShow, setAddCommentModalShow] = useState(false);
     const handleClose = () => setAddCommentModalShow(false)
     const handleShow = () => setAddCommentModalShow(true)
+
+    const [commentModalShow, setCommentModalShow] = useState(false);
+    const handleCommentModalClose = () => setCommentModalShow(false)
+    const handleCommentModalShow = () => setCommentModalShow(true)
 
     useEffect(() => console.log(relevantComments), [relevantComments])
 
@@ -56,6 +61,8 @@ const ArticleTable = props => {
     return (
         <Table className="align-self-center">
             <AddCommentModal show={addCommentModalShow} handleClose={handleClose} handleShow={handleShow} />
+            
+            <CommentsModal show={commentModalShow} handleClose={handleCommentModalClose} handleShow={handleCommentModalShow} />
             <thead>
                 <tr>
                     <th>#</th>
@@ -74,6 +81,7 @@ const ArticleTable = props => {
                                 .then(async data => {
                                     let comments = await getComments(data)
                                     setRelevantComments(comments)
+                                    setCommentModalShow(true)
                                 })
                         }}>View Comments</td>
                         {props.display === "all" ?
