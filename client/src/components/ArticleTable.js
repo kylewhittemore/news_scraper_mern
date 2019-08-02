@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Table from 'react-bootstrap/Table';
 import AddCommentModal from './AddCommentModal';
+import AddToFavoritesModal from './AddToFavoritesModal'
 // import CommentsModal from './CommentsModal'
-// import AddToFavoritesModal from './AddToFavoritesModal'
 // import CommentList from './CommentList';
 import Axios from 'axios';
 
@@ -19,9 +19,9 @@ const ArticleTable = props => {
     // const handleCommentModalClose = () => setCommentModalShow(false)
     // const handleCommentModalShow = () => setCommentModalShow(true)
     
-    // const [favoritesModalShow, setFavoritesModalShow] = useState(false);
-    // const handleFavoritesModalClose = () => setFavoritesModalShow(false)
-    // const handleFavoritesModalShow = () => setFavoritesModalShow(true)
+    const [favoritesModalShow, setFavoritesModalShow] = useState(false);
+    const handleFavoritesModalClose = () => setFavoritesModalShow(false)
+    const handleFavoritesModalShow = () => setFavoritesModalShow(true)
 
     useEffect(() => console.log(relevantComments), [relevantComments])
 
@@ -49,7 +49,7 @@ const ArticleTable = props => {
 
     async function addToFavorites(id) {
         console.log(id)
-
+        setFavoritesModalShow(true)
         let article = await Axios({
             method: 'put',
             url: `/api/articles/${id}`,
@@ -65,9 +65,9 @@ const ArticleTable = props => {
         <Table className="align-self-center">
             <AddCommentModal show={addCommentModalShow} handleClose={handleClose} handleShow={handleShow} />
             
-            {/* <CommentsModal show={commentModalShow} handleClose={handleCommentModalClose} handleShow={handleCommentModalShow} />
+            {/* <CommentsModal show={commentModalShow} handleClose={handleCommentModalClose} handleShow={handleCommentModalShow} /> */}
             
-            <AddToFavoritesModal show={favoritesModalShow} handleClose={handleFavoritesModalClose} handleShow={handleFavoritesModalShow} /> */}
+            <AddToFavoritesModal show={favoritesModalShow} handleClose={handleFavoritesModalClose} handleShow={handleFavoritesModalShow} />
 
             <thead>
                 <tr>
