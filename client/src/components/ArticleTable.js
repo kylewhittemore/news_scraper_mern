@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Table from 'react-bootstrap/Table';
 import AddCommentModal from './AddCommentModal';
 import CommentsModal from './CommentsModal'
-import AddtoFavoritesModal from './AddToFavoritesModal'
+import AddToFavoritesModal from './AddToFavoritesModal'
 // import CommentList from './CommentList';
 import Axios from 'axios';
 
@@ -67,8 +67,8 @@ const ArticleTable = props => {
             
             <CommentsModal show={commentModalShow} handleClose={handleCommentModalClose} handleShow={handleCommentModalShow} />
             
-            <CommentsModal show={favoritesModalShow} handleClose={handleFavoritesModalClose} handleShow={handleFavoritesModalShow} />
-            
+            <AddToFavoritesModal show={favoritesModalShow} handleClose={handleFavoritesModalClose} handleShow={handleFavoritesModalShow} />
+
             <thead>
                 <tr>
                     <th>#</th>
