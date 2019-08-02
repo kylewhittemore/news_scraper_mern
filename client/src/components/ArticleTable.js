@@ -33,7 +33,7 @@ const ArticleTable = props => {
     }
 
     async function addComment(id) {
-        setAddCommentModalShow(true)
+        // setAddCommentModalShow(true)
         console.log(id)
     }
   
@@ -87,12 +87,12 @@ const ArticleTable = props => {
                                 .then(async data => {
                                     let comments = await getComments(data)
                                     setRelevantComments(comments)
-                                    setCommentModalShow(true)
+                                    // setCommentModalShow(true)
                                 })
                         }}>View Comments</td>
                         {props.display === "all" ?
                             <td className="favorite-link" onClick={() => {
-                                setFavoritesModalShow(true)
+                                // setFavoritesModalShow(true)
                                 addToFavorites(article._id).then(data => console.log(data))
                             }}>Add to Favorites</td>
                             :
