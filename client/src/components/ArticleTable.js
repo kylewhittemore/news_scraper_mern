@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Table from 'react-bootstrap/Table';
 import AddCommentModal from './AddCommentModal';
 import CommentsModal from './CommentsModal'
-
+import AddtoFavoritesModal from './AddToFavoritesModal'
 // import CommentList from './CommentList';
 import Axios from 'axios';
 
@@ -18,11 +18,14 @@ const ArticleTable = props => {
     const [commentModalShow, setCommentModalShow] = useState(false);
     const handleCommentModalClose = () => setCommentModalShow(false)
     const handleCommentModalShow = () => setCommentModalShow(true)
+    
+    const [favoritesModalShow, setFavoritesModalShow] = useState(false);
+    const handleFavoritesModalClose = () => setFavoritesModalShow(false)
+    const handleFavoritesModalShow = () => setFavoritesModalShow(true)
 
     useEffect(() => console.log(relevantComments), [relevantComments])
 
     async function getCommentIds(id) {
-        // setShowComments(true)
         console.log(id)
         let response = await Axios.get(`api/articles/${id}`)
         let commentIds = response.data.comments;
@@ -63,6 +66,9 @@ const ArticleTable = props => {
             <AddCommentModal show={addCommentModalShow} handleClose={handleClose} handleShow={handleShow} />
             
             <CommentsModal show={commentModalShow} handleClose={handleCommentModalClose} handleShow={handleCommentModalShow} />
+            
+            <CommentsModal show={favoritesModalShow} handleClose={handleFavoritesModalClose} handleShow={handleFavoritesModalShow} />
+            
             <thead>
                 <tr>
                     <th>#</th>
@@ -86,6 +92,7 @@ const ArticleTable = props => {
                         }}>View Comments</td>
                         {props.display === "all" ?
                             <td className="favorite-link" onClick={() => {
+                                setFavoritesModalShow(true)
                                 addToFavorites(article._id).then(data => console.log(data))
                             }}>Add to Favorites</td>
                             :
