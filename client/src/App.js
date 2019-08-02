@@ -12,7 +12,7 @@ import Axios from 'axios';
 function App() {
 
   const [comments, setComments] = useState([])
-
+  const [display, setDisplay] = useState("all")
   const [articles, setArticles] = useState([])
   const [loading, setLoading] = useState(false)
 
@@ -24,9 +24,18 @@ function App() {
   async function getFavorites() {
     let favoriteArticles = await Axios.get('/api/articles/favs')
     // console.log(favoriteArticles)
+    setDisplay("favs")
     setArticles(favoriteArticles.data)
     console.log("state", articles)
     return favoriteArticles
+  }
+
+  async function showAll() {
+    let allArticles = await Axios.get('/api/articles')
+    setDisplay("all")
+    setArticles(allArticles.data)
+    console.log("state", articles)
+    return allArticles
   }
 
   useEffect(() => {
@@ -47,9 +56,9 @@ function App() {
 
   return (
     <Container >
-      <Welcome getFavorites={getFavorites} />
+      <Welcome getFavorites={getFavorites} showAll={showAll} />
       <Row className="justify-content-center">
-        {loading ? <LoadingSpinner /> : <ArticleTable articles={articles} />}
+        {loading ? <LoadingSpinner /> : <ArticleTable display={display} articles={articles} />}
       </Row>
     <CommentList comments={comments} />
     </Container>

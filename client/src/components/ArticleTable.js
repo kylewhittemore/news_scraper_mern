@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Table from 'react-bootstrap/Table';
+import AddCommentModal from './addCommentModal';
+
 // import CommentList from './CommentList';
 import Axios from 'axios';
 
@@ -7,9 +9,10 @@ const ArticleTable = props => {
 
     // const [showComments, setShowComments] = useState(false)
     const [relevantComments, setRelevantComments] = useState([])
-    // const [loading, setLoading] = useState(false)
-
-    // const [articles, setArticles] = useState(props.articles);
+    
+    const [addCommentModalShow, setAddCommentModalShow] = useState(false);
+    const handleClose = () => setAddCommentModalShow(false)
+    const handleShow = () => setAddCommentModalShow(true)
 
     useEffect(() => console.log(relevantComments), [relevantComments])
 
@@ -21,6 +24,11 @@ const ArticleTable = props => {
         return commentIds
     }
 
+    async function addComment(id) {
+        setAddCommentModalShow(true)
+        console.log(id)
+    }
+  
     async function getComments(commentIds) {
         let commentArr = [];
 
@@ -47,6 +55,7 @@ const ArticleTable = props => {
 
     return (
         <Table className="align-self-center">
+            <AddCommentModal show={addCommentModalShow} handleClose={handleClose} handleShow={handleShow} />
             <thead>
                 <tr>
                     <th>#</th>
@@ -67,9 +76,17 @@ const ArticleTable = props => {
                                     setRelevantComments(comments)
                                 })
                         }}>View Comments</td>
-                        <td className="favorite-link" onClick={() => {
-                            addToFavorites(article._id).then(data => console.log(data))
-                        }}>Add to Favorites</td>
+                        {props.display === "all" ?
+                            <td className="favorite-link" onClick={() => {
+                                addToFavorites(article._id).then(data => console.log(data))
+                            }}>Add to Favorites</td>
+                            :
+                            <td className="favorite-link" onClick={() => {
+                                console.log("add a comment")
+                                // addComment(article._id).then(data => console.log(data))
+                                addComment(article._id)
+                            }}>Add Comment</td>
+                        }
                     </tr>
                 ))}
             </tbody>
