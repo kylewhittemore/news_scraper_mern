@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Table from 'react-bootstrap/Table';
-// import AddCommentModal from './AddCommentModal';
+import AddCommentModal from './AddCommentModal';
 // import CommentsModal from './CommentsModal'
 // import AddToFavoritesModal from './AddToFavoritesModal'
 // import CommentList from './CommentList';
@@ -11,9 +11,9 @@ const ArticleTable = props => {
     // const [showComments, setShowComments] = useState(false)
     const [relevantComments, setRelevantComments] = useState([])
     
-    // const [addCommentModalShow, setAddCommentModalShow] = useState(false);
-    // const handleClose = () => setAddCommentModalShow(false)
-    // const handleShow = () => setAddCommentModalShow(true)
+    const [addCommentModalShow, setAddCommentModalShow] = useState(false);
+    const handleClose = () => setAddCommentModalShow(false)
+    const handleShow = () => setAddCommentModalShow(true)
 
     // const [commentModalShow, setCommentModalShow] = useState(false);
     // const handleCommentModalClose = () => setCommentModalShow(false)
@@ -33,7 +33,7 @@ const ArticleTable = props => {
     }
 
     async function addComment(id) {
-        // setAddCommentModalShow(true)
+        setAddCommentModalShow(true)
         console.log(id)
     }
   
@@ -63,9 +63,9 @@ const ArticleTable = props => {
 
     return (
         <Table className="align-self-center">
-            {/* <AddCommentModal show={addCommentModalShow} handleClose={handleClose} handleShow={handleShow} />
+            <AddCommentModal show={addCommentModalShow} handleClose={handleClose} handleShow={handleShow} />
             
-            <CommentsModal show={commentModalShow} handleClose={handleCommentModalClose} handleShow={handleCommentModalShow} />
+            {/* <CommentsModal show={commentModalShow} handleClose={handleCommentModalClose} handleShow={handleCommentModalShow} />
             
             <AddToFavoritesModal show={favoritesModalShow} handleClose={handleFavoritesModalClose} handleShow={handleFavoritesModalShow} /> */}
 
