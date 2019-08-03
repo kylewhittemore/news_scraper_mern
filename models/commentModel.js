@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-let Comment = new Schema({
+const Comment = new Schema({
     header: {
         type: String,
         required: true
@@ -9,6 +9,10 @@ let Comment = new Schema({
     body: {
         type: String,
         required: true
+    },
+    article: {
+        type: Schema.Types.ObjectId,
+        ref: "Article"
     }
 });
 

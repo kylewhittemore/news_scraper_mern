@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-let Article = new Schema({
+const Article = new Schema({
     title: {
         type: String,
         required: true,
@@ -26,7 +26,7 @@ let Article = new Schema({
           // Store ObjectIds in the array
           type: Schema.Types.ObjectId,
           // The ObjectIds will refer to the ids in the Note model
-          ref: "Coment"
+          ref: "Comment"
         }
       ]
 });
