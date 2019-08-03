@@ -7,6 +7,7 @@ import Container from 'react-bootstrap/Container';
 
 const CommentForm = props => {
 
+    console.log("form", props.articleId)
 
 
     return (

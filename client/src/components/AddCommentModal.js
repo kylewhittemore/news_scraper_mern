@@ -3,8 +3,9 @@ import Modal from 'react-bootstrap/Modal';
 import CommentForm from './CommentForm';
 
 const AddCommentModal = props => {   
-    async function addComment(comment) {
-        // Axios.
+
+    if (props.articleId) {
+        console.log("modal", props.articleId)
     }
 
     function CommentRender() {
