@@ -14,7 +14,7 @@ const ArticleTable = props => {
     const [addCommentModalShow, setAddCommentModalShow] = useState(false);
     const handleClose = () => {
         setAddCommentModalShow(false)
-        props.getFavorites()
+        props.showAll()
     }
     const handleShow = () => setAddCommentModalShow(true)
 
@@ -34,13 +34,13 @@ const ArticleTable = props => {
         setRelevantComments(rawComments)
     }
 
-    async function addToFavorites(id) {
+    async function updateFavorites(id, isFavorite) {
         setFavoritesModalShow(true)
         let article = await Axios({
             method: 'put',
             url: `/api/articles/${id}`,
             data: {
-                isFavorite: true
+                isFavorite: isFavorite
             }
         });
 
@@ -54,7 +54,8 @@ const ArticleTable = props => {
                     <th>#</th>
                     <th>Title</th>
                     <th></th>
-
+                    <th></th>
+                    <th></th>
                 </tr>
             </thead>
         )
@@ -63,8 +64,8 @@ const ArticleTable = props => {
     function TableBody() {
 
         const styles = {
-            favorite: {
-                color: "red"
+            icon: {
+                cursor: "pointer"
             }
         }
 
@@ -74,26 +75,36 @@ const ArticleTable = props => {
                     <tr key={article._id}>
                         <td>{index + 1}</td>
                         <td><a href={article.link}>{article.title}</a></td>
-                        {
-                            (props.display === "favs") ?
-                                (props.articles[index].comments.length > 0) ?
-                                    <td className="comment-link" onClick={() => {
-                                        getCommentsByArticle(article._id).then(setAddCommentModalShow(true))
-                                    }} style={styles.favorite}>comments</td>
-                                    :
-                                    <td className="comment-link" onClick={() => {
-                                        getCommentsByArticle(article._id).then(setAddCommentModalShow(true))
-                                    }}>comments</td>
-                                :
-                                (props.articles[index].isFavorite) ? <td className="comment-link" onClick={() => {
 
-                                    addToFavorites(article._id).then(data => console.log("added to favorites: ", data))
-                                }} style={styles.favorite}>favorite</td>
-                                    :
-                                    <td className="comment-link" onClick={() => {
-                                        addToFavorites(article._id).then(data => console.log("added to favorites: ", data))
-                                    }}>favorite</td>
+                        <td>
+                            {(article.isFavorite === true) ? 
+                                
+                                <i style={styles.icon} className="p-1 fas fa-star" onClick={() => {
+                                    updateFavorites(article._id, false).then(setFavoritesModalShow(true))
+                                }}></i>
+                                :
+                                <i style={styles.icon} className="p-1 far fa-star" onClick={() => {
+                                    updateFavorites(article._id, true).then(setFavoritesModalShow(true))
+                                }}></i>
+                            }
+                        </td>
+
+                        {(props.articles[index].comments.length > 0) ?
+                            <td><i style={styles.icon} className="p-1 fas fa-comment" onClick={() => {
+                                getCommentsByArticle(article._id).then(setAddCommentModalShow(true))
+                            }}></i></td>
+                            :
+                            <td><i style={styles.icon} className="p-1 far fa-comment" onClick={() => {
+                                getCommentsByArticle(article._id).then(setAddCommentModalShow(true))
+                            }}></i> </td>
                         }
+
+                        <td>
+                            <i style={styles.icon} className="p-1 far fa-trash-alt"onClick={() => {
+                                console.log("clicked trash")
+                            }}></i>
+                        </td>
+
                     </tr>
                 ))}
             </tbody>
