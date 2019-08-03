@@ -11,7 +11,7 @@ import Axios from 'axios';
 
 function App() {
 
-  const [comments, setComments] = useState([])
+  // const [comments, setComments] = useState([])
   const [display, setDisplay] = useState("all")
   const [articles, setArticles] = useState([])
   const [loading, setLoading] = useState(false)
@@ -60,7 +60,7 @@ function App() {
       <Row className="justify-content-center">
         {loading ? <LoadingSpinner /> : <ArticleTable display={display} articles={articles} />}
       </Row>
-    <CommentList comments={comments} />
+    {/* <CommentList comments={comments} /> */}
     </Container>
   );
 }
