@@ -73,6 +73,11 @@ const ArticleTable = props => {
                         <td><a href={article.link}>{article.title}</a></td>
                         {
                             (props.display === "favs") ?
+                            (props.articles[index].comments.length > 0) ?
+                                <td className="comment-link" onClick={() => {
+                                    getCommentsByArticle(article._id).then(setAddCommentModalShow(true))
+                                }} style={styles.favorite}>comments</td>
+                                :
                                 <td className="comment-link" onClick={() => {
                                     getCommentsByArticle(article._id).then(setAddCommentModalShow(true))
                                 }}>comments</td>

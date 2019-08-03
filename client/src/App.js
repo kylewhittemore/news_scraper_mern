@@ -26,7 +26,7 @@ function App() {
     // console.log(favoriteArticles)
     setDisplay("favs")
     setArticles(favoriteArticles.data)
-    console.log("state", articles)
+    // console.log("state", articles)
     return favoriteArticles
   }
 
@@ -34,7 +34,7 @@ function App() {
     let allArticles = await Axios.get('/api/articles')
     setDisplay("all")
     setArticles(allArticles.data)
-    console.log("state", articles)
+    // console.log("state", articles)
     return allArticles
   }
 

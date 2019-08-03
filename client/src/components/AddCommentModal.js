@@ -2,10 +2,7 @@ import React, { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import CommentForm from './CommentForm';
 
-const AddCommentModal = props => {
-    console.log("inside", props.comments)
-    console.log("props id", props.articleId)
-    
+const AddCommentModal = props => {   
     async function addComment(comment) {
         // Axios.
     }
