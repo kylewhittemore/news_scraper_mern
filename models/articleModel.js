@@ -11,7 +11,10 @@ const Article = new Schema({
     },
     link: {
         type: String,
-        required: true
+        required: true,
+        index: {
+            unique: true
+        }
     },
     isFavorite: {
         type: Boolean,
