@@ -5,7 +5,8 @@ import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 
 
-const CommentForm = () => {
+const CommentForm = props => {
+
 
 
     return (

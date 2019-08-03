@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
-import Button from 'react-bootstrap/Button';
 import CommentForm from './CommentForm';
 
 const AddCommentModal = props => {
     console.log("inside", props.comments)
+    console.log("props id", props.articleId)
+    
 
     function CommentRender() {
         return (
+            (props.comments.length > 0) ? 
             props.comments.map((comment, index) => {
                 console.log("comment", comment)
                 return (
@@ -16,7 +18,7 @@ const AddCommentModal = props => {
                         <p>{comment.body}</p>
                     </div>
                 )
-            })
+            }) : <h4>No comments yet!</h4>
         )
     }
 
@@ -29,7 +31,7 @@ const AddCommentModal = props => {
                 </Modal.Header>
                 <Modal.Body>
                     <CommentRender />
-                    <CommentForm />
+                    <CommentForm articleId={props.articleId} />
                 </Modal.Body>
             </Modal>
         </>

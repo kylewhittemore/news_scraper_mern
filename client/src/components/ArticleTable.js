@@ -8,6 +8,7 @@ import Axios from 'axios';
 const ArticleTable = props => {
 
     const [relevantComments, setRelevantComments] = useState([])
+    const [relevantArticleId, setRelevantArticleId] = useState();
 
     const [addCommentModalShow, setAddCommentModalShow] = useState(false);
     const handleClose = () => setAddCommentModalShow(false)
@@ -17,10 +18,10 @@ const ArticleTable = props => {
     const handleFavoritesModalClose = () => setFavoritesModalShow(false)
     const handleFavoritesModalShow = () => setFavoritesModalShow(true)
 
-    async function getPop(id) {
+    async function getCommentsByArticle(id) {
         let data = await Axios.get('/api/articles/' + id)
         let rawComments = data.data.comments
-
+        setRelevantArticleId(id)
         setRelevantComments(rawComments)
     }
 
@@ -33,6 +34,8 @@ const ArticleTable = props => {
                 isFavorite: true
             }
         });
+
+        // setRelevantArticleId(article.id)
 
         return article
     }
@@ -56,9 +59,9 @@ const ArticleTable = props => {
                 <tr key={article._id}>
                     <td>{index + 1}</td>
                     <td><a href={article.link}>{article.title}</a></td>
-                    
+
                     <td className="comment-link" onClick={() => {
-                        getPop(article._id).then(setAddCommentModalShow(true))
+                        getCommentsByArticle(article._id).then(setAddCommentModalShow(true))
                     }}>View Comments</td>
 
                     <td className="favorite-link" onClick={() => {
@@ -74,7 +77,7 @@ const ArticleTable = props => {
         <div>
 
             <Table className="align-self-center">
-                <AddCommentModal comments={relevantComments} show={addCommentModalShow} handleClose={handleClose} handleShow={handleShow} />
+                <AddCommentModal comments={relevantComments} articleId={relevantArticleId} show={addCommentModalShow} handleClose={handleClose} handleShow={handleShow} />
                 <AddToFavoritesModal show={favoritesModalShow} handleClose={handleFavoritesModalClose} handleShow={handleFavoritesModalShow} />
                 <TableHead />
                 <tbody>
