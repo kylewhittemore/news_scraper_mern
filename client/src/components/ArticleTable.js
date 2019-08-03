@@ -7,6 +7,7 @@ import Axios from 'axios';
 
 const ArticleTable = props => {
 
+
     const [relevantComments, setRelevantComments] = useState([])
     const [relevantArticleId, setRelevantArticleId] = useState();
 
@@ -15,8 +16,13 @@ const ArticleTable = props => {
     const handleShow = () => setAddCommentModalShow(true)
 
     const [favoritesModalShow, setFavoritesModalShow] = useState(false);
-    const handleFavoritesModalClose = () => setFavoritesModalShow(false)
-    const handleFavoritesModalShow = () => setFavoritesModalShow(true)
+    const handleFavoritesModalClose = () => {
+        setFavoritesModalShow(false)
+        props.showAll()
+    }
+    const handleFavoritesModalShow = () => {
+        setFavoritesModalShow(true)
+    }
 
     async function getCommentsByArticle(id) {
         let data = await Axios.get('/api/articles/' + id)
@@ -35,8 +41,6 @@ const ArticleTable = props => {
             }
         });
 
-        // setRelevantArticleId(article.id)
-
         return article
     }
 
@@ -46,45 +50,60 @@ const ArticleTable = props => {
                 <tr>
                     <th>#</th>
                     <th>Title</th>
-                    <th>View Comments</th>
-                    <th>Add to Favorites</th>
+                    <th></th>
+
                 </tr>
             </thead>
         )
     }
 
     function TableBody() {
+
+        const styles = {
+            favorite: {
+                color: "red"
+            }
+        }
+
         return (
-            props.articles.map((article, index) => (
-                <tr key={article._id}>
-                    <td>{index + 1}</td>
-                    <td><a href={article.link}>{article.title}</a></td>
-
-                    <td className="comment-link" onClick={() => {
-                        getCommentsByArticle(article._id).then(setAddCommentModalShow(true))
-                    }}>View Comments</td>
-
-                    <td className="favorite-link" onClick={() => {
-                        addToFavorites(article._id).then(data => console.log("added to favorites: ", data))
-                    }}>Add to Favorites</td>
-
-                </tr>
-            ))
+            <tbody>
+                {props.articles.map((article, index) => (
+                    <tr key={article._id}>
+                        <td>{index + 1}</td>
+                        <td><a href={article.link}>{article.title}</a></td>
+                        {
+                            (props.display === "favs") ?
+                                <td className="comment-link" onClick={() => {
+                                    getCommentsByArticle(article._id).then(setAddCommentModalShow(true))
+                                }}>comments</td>
+                                :
+                                (props.articles[index].isFavorite) ? <td className="comment-link" onClick={() => {
+                            
+                                    addToFavorites(article._id).then(data => console.log("added to favorites: ", data))
+                                }}style={styles.favorite}>favorite</td>
+                                    :
+                                    <td className="comment-link" onClick={() => {
+                                        addToFavorites(article._id).then(data => console.log("added to favorites: ", data))
+                                    }}>favorite</td>
+                        }
+                    </tr>
+                ))}
+            </tbody>
         )
     }
 
     return (
-        <div>
 
-            <Table className="align-self-center">
-                <AddCommentModal comments={relevantComments} articleId={relevantArticleId} show={addCommentModalShow} handleClose={handleClose} handleShow={handleShow} />
-                <AddToFavoritesModal show={favoritesModalShow} handleClose={handleFavoritesModalClose} handleShow={handleFavoritesModalShow} />
-                <TableHead />
-                <tbody>
-                    <TableBody />
-                </tbody>
-            </Table>
-        </div>
+
+        <Table className="align-self-center">
+            <AddCommentModal comments={relevantComments} articleId={relevantArticleId} show={addCommentModalShow} handleClose={handleClose} handleShow={handleShow} />
+            <AddToFavoritesModal show={favoritesModalShow} handleClose={handleFavoritesModalClose} handleShow={handleFavoritesModalShow} />
+            <TableHead />
+
+            <TableBody />
+
+        </Table>
+
     )
 }
 

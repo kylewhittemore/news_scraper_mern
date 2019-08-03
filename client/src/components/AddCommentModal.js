@@ -6,6 +6,9 @@ const AddCommentModal = props => {
     console.log("inside", props.comments)
     console.log("props id", props.articleId)
     
+    async function addComment(comment) {
+        // Axios.
+    }
 
     function CommentRender() {
         return (

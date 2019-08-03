@@ -53,14 +53,12 @@ function App() {
 
   }, []);
 
-
   return (
     <Container >
-      <Welcome getFavorites={getFavorites} showAll={showAll} />
+      <Welcome getFavorites={getFavorites} display={display} showAll={showAll} />
       <Row className="justify-content-center">
-        {loading ? <LoadingSpinner /> : <ArticleTable display={display} articles={articles} />}
+        {loading ? <LoadingSpinner /> : <ArticleTable showAll={showAll} display={display} articles={articles} />}
       </Row>
-    {/* <CommentList comments={comments} /> */}
     </Container>
   );
 }

@@ -12,7 +12,10 @@ const CommentForm = props => {
     return (
         <Container>
             <Row className="justify-content-center">
-                <Form className="comment-form col-md-8 m-4">
+                <Form onSubmit={event => {
+                    event.preventDefault()
+                    
+                }} className="comment-form col-md-8 m-4">
                     <Form.Group>
                         <Form.Label></Form.Label>
                         <Form.Control type="text" placeholder="Enter Name" />
