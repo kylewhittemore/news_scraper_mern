@@ -4,13 +4,9 @@ import CommentForm from './CommentForm';
 
 const AddCommentModal = props => {   
 
-    if (props.articleId) {
-        console.log("modal", props.articleId)
-    }
-
     function CommentRender() {
         return (
-            (props.comments.length > 0) ? 
+            (props.comments && props.comments.length > 0) ? 
             props.comments.map((comment, index) => {
                 console.log("comment", comment)
                 return (
@@ -32,7 +28,7 @@ const AddCommentModal = props => {
                 </Modal.Header>
                 <Modal.Body>
                     <CommentRender />
-                    <CommentForm articleId={props.articleId} />
+                    <CommentForm hide={props.handleClose} articleId={props.articleId} />
                 </Modal.Body>
             </Modal>
         </>

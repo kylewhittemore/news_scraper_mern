@@ -12,7 +12,10 @@ const ArticleTable = props => {
     const [relevantArticleId, setRelevantArticleId] = useState();
 
     const [addCommentModalShow, setAddCommentModalShow] = useState(false);
-    const handleClose = () => setAddCommentModalShow(false)
+    const handleClose = () => {
+        setAddCommentModalShow(false)
+        props.getFavorites()
+    }
     const handleShow = () => setAddCommentModalShow(true)
 
     const [favoritesModalShow, setFavoritesModalShow] = useState(false);
@@ -73,19 +76,19 @@ const ArticleTable = props => {
                         <td><a href={article.link}>{article.title}</a></td>
                         {
                             (props.display === "favs") ?
-                            (props.articles[index].comments.length > 0) ?
-                                <td className="comment-link" onClick={() => {
-                                    getCommentsByArticle(article._id).then(setAddCommentModalShow(true))
-                                }} style={styles.favorite}>comments</td>
-                                :
-                                <td className="comment-link" onClick={() => {
-                                    getCommentsByArticle(article._id).then(setAddCommentModalShow(true))
-                                }}>comments</td>
+                                (props.articles[index].comments.length > 0) ?
+                                    <td className="comment-link" onClick={() => {
+                                        getCommentsByArticle(article._id).then(setAddCommentModalShow(true))
+                                    }} style={styles.favorite}>comments</td>
+                                    :
+                                    <td className="comment-link" onClick={() => {
+                                        getCommentsByArticle(article._id).then(setAddCommentModalShow(true))
+                                    }}>comments</td>
                                 :
                                 (props.articles[index].isFavorite) ? <td className="comment-link" onClick={() => {
-                            
+
                                     addToFavorites(article._id).then(data => console.log("added to favorites: ", data))
-                                }}style={styles.favorite}>favorite</td>
+                                }} style={styles.favorite}>favorite</td>
                                     :
                                     <td className="comment-link" onClick={() => {
                                         addToFavorites(article._id).then(data => console.log("added to favorites: ", data))
@@ -101,8 +104,20 @@ const ArticleTable = props => {
 
 
         <Table className="align-self-center">
-            <AddCommentModal comments={relevantComments} articleId={relevantArticleId} show={addCommentModalShow} handleClose={handleClose} handleShow={handleShow} />
-            <AddToFavoritesModal show={favoritesModalShow} handleClose={handleFavoritesModalClose} handleShow={handleFavoritesModalShow} />
+            <AddCommentModal
+                comments={relevantComments}
+                articleId={relevantArticleId}
+                show={addCommentModalShow}
+                handleClose={handleClose}
+                handleShow={handleShow}
+            />
+
+            <AddToFavoritesModal
+                show={favoritesModalShow}
+                handleClose={handleFavoritesModalClose}
+                handleShow={handleFavoritesModalShow}
+            />
+
             <TableHead />
 
             <TableBody />
