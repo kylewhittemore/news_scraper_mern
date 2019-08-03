@@ -5,6 +5,7 @@ const addCommentById = require('./addCommentByID');
 const updateArticleById = require('./updateArticleById');
 const getFavorites = require('./getFavorites');
 const getCommentById = require('./getCommentById');
+const deleteArticleById = require('./deleteArticleById')
 
 // Tested wroking
 // Get all articles
@@ -28,6 +29,8 @@ articles.put('/:id', updateArticleById);
 
 
 articles.get('/comments/:id', getCommentById)
+
+articles.delete('/:id', deleteArticleById)
 
 
 module.exports = articles;
