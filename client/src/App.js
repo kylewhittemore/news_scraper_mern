@@ -57,7 +57,7 @@ function App() {
     <Container >
       <Welcome getFavorites={getFavorites} display={display} showAll={showAll} />
       <Row className="justify-content-center">
-        {loading ? <LoadingSpinner /> : <ArticleTable showAll={showAll} display={display} articles={articles} />}
+        {loading ? <LoadingSpinner /> : <ArticleTable getFavorites={getFavorites} showAll={showAll} display={display} articles={articles} />}
       </Row>
     </Container>
   );
