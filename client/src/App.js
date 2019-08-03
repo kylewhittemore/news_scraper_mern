@@ -49,7 +49,7 @@ function App() {
     fetchArticles().then(data => {
       setArticles(data)
       setLoading(false)
-    })
+    }).catch(err => setLoading(false))
 
   }, []);
 
