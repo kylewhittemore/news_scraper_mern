@@ -50,7 +50,8 @@ function App() {
       return data;
     }
     fetchArticles().then(data => {
-      setArticles(data)
+      let art = data.filter(a => !a.isDeleted)
+      setArticles(art)
       setLoading(false)
     }).catch(err => setLoading(false))
 
