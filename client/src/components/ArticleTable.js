@@ -2,29 +2,39 @@ import React, { useState, useEffect } from 'react';
 import Table from 'react-bootstrap/Table';
 import AddCommentModal from './AddCommentModal';
 import AddToFavoritesModal from './AddToFavoritesModal'
-
+import DeletedModal from './DeletedModal'
 import Axios from 'axios';
 
 const ArticleTable = props => {
 
-
+    // State holds the current comments for an article that was selected
     const [relevantComments, setRelevantComments] = useState([])
+
+    // State that stores the id of the article that will have a crud operation on it 
     const [relevantArticleId, setRelevantArticleId] = useState();
 
+    // Comment Modal State
     const [addCommentModalShow, setAddCommentModalShow] = useState(false);
-    const handleClose = () => {
+    const handleCommentModalShow = () => setAddCommentModalShow(true)
+    const handleCommentModalClose = () => {
         setAddCommentModalShow(false)
         props.showAll()
     }
-    const handleShow = () => setAddCommentModalShow(true)
 
+    // Favorites Modal State
     const [favoritesModalShow, setFavoritesModalShow] = useState(false);
+    const handleFavoritesModalShow = () => setFavoritesModalShow(true)
     const handleFavoritesModalClose = () => {
         setFavoritesModalShow(false)
         props.showAll()
     }
-    const handleFavoritesModalShow = () => {
-        setFavoritesModalShow(true)
+
+    // Deleted Modal State
+    const [deletedModalShow, setDeletedModalShow] = useState(false);
+    const handleDeletedModalShow = () => setDeletedModalShow(true)
+    const handleDeletedModalClose = () => {
+        setDeletedModalShow(false)
+        props.showAll()
     }
 
     async function getCommentsByArticle(id) {
@@ -47,7 +57,7 @@ const ArticleTable = props => {
         return article
     }
     async function updateDeleted(id) {
-        setFavoritesModalShow(true)
+        setDeletedModalShow(true)
         let article = await Axios({
             method: 'put',
             url: `/api/articles/${id}`,
@@ -131,8 +141,14 @@ const ArticleTable = props => {
                 comments={relevantComments}
                 articleId={relevantArticleId}
                 show={addCommentModalShow}
-                handleClose={handleClose}
-                handleShow={handleShow}
+                handleClose={handleCommentModalClose}
+                handleShow={handleCommentModalShow}
+            />
+            
+            <DeletedModal 
+                show={deletedModalShow}
+                handleClose={handleDeletedModalClose}
+                handleShow={handleDeletedModalShow}    
             />
 
             <AddToFavoritesModal

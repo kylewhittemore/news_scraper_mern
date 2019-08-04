@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Modal from 'react-bootstrap/Modal';
 import CommentForm from './CommentForm';
 
@@ -14,17 +14,13 @@ const AddCommentModal = props => {
                         <p>{comment.body}</p>
                     </div>
                 )
-            }) : <h4>No comments yet!</h4>
+            }) : <p>Add a Comment:</p>
         )
     }
-//arbitrary change
 
     return (
         <>
             <Modal show={props.show} onHide={props.handleClose}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Add a Comment:</Modal.Title>
-                </Modal.Header>
                 <Modal.Body>
                     <CommentRender />
                     <CommentForm hide={props.handleClose} articleId={props.articleId} />
