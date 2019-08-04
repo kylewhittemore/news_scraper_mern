@@ -11,7 +11,6 @@ const AddCommentModal = props => {
                 console.log("comment", comment)
                 return (
                     <div key={comment._id}>
-                        <p>{comment.header}</p>
                         <p>{comment.body}</p>
                     </div>
                 )

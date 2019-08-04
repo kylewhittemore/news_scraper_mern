@@ -11,11 +11,10 @@ const CommentForm = props => {
     const initialFormState = { header: '', body: '' }
     const [comment, setComment] = useState(initialFormState)
 
-    
+
 
     async function addComment(comment) {
         let newComment = {
-            header: comment.header,
             body: comment.body
         }
 
@@ -26,7 +25,7 @@ const CommentForm = props => {
 
     const handleInputChange = event => {
         const { name, value } = event.target
-        setComment({ ...comment, [name]: value})
+        setComment({ ...comment, [name]: value })
     }
 
     return (
@@ -37,12 +36,8 @@ const CommentForm = props => {
                     let favs = await addComment(comment)
                     props.hide()
                     return favs
-                    
-                }} className="comment-form col-md-8 m-4">
-                    <Form.Group>
-                        <Form.Label></Form.Label>
-                        <Form.Control name="header" value={comment.header} type="text" placeholder="Enter Name" onChange={handleInputChange} />
-                    </Form.Group>
+
+                }} className="comment-form col-md-8 m-1">
                     <Form.Group>
                         <Form.Label></Form.Label>
                         <Form.Control name="body" value={comment.body} type="text" placeholder="Enter your comment" onChange={handleInputChange} />
