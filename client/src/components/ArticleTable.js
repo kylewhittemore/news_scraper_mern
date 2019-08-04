@@ -46,6 +46,18 @@ const ArticleTable = props => {
 
         return article
     }
+    async function updateDeleted(id) {
+        setFavoritesModalShow(true)
+        let article = await Axios({
+            method: 'put',
+            url: `/api/articles/${id}`,
+            data: {
+                isDeleted: true
+            }
+        });
+
+        return article
+    }
 
     function TableHead() {
         return (
@@ -101,7 +113,7 @@ const ArticleTable = props => {
 
                         <td>
                             <i style={styles.icon} className="p-1 far fa-trash-alt"onClick={() => {
-                                console.log("clicked trash")
+                                updateDeleted(article._id).then(console.log("deleted"))
                             }}></i>
                         </td>
 

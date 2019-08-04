@@ -20,6 +20,10 @@ const Article = new Schema({
         type: Boolean,
         required: true
     },
+    isDeleted: {
+        type: Boolean,
+        required: true
+    },
     // byline: {
     //     type: String,
     //     required: true

@@ -25,7 +25,9 @@ function App() {
     let favoriteArticles = await Axios.get('/api/articles/favs')
     // console.log(favoriteArticles)
     setDisplay("favs")
-    setArticles(favoriteArticles.data)
+    let art = favoriteArticles.data.filter(a => !a.isDeleted)
+    console.log('art', art)
+    setArticles(art)
     // console.log("state", articles)
     return favoriteArticles
   }
@@ -33,7 +35,8 @@ function App() {
   async function showAll() {
     let allArticles = await Axios.get('/api/articles')
     setDisplay("all")
-    setArticles(allArticles.data)
+    let art = allArticles.data.filter(a => !a.isDeleted)
+    setArticles(art)
     // console.log("state", articles)
     return allArticles
   }
