@@ -3,6 +3,7 @@ import Table from 'react-bootstrap/Table';
 import AddCommentModal from './AddCommentModal';
 import AddToFavoritesModal from './AddToFavoritesModal'
 import DeletedModal from './DeletedModal'
+import UnFavoriteModal from './UnFavoriteModal'
 import Axios from 'axios';
 
 const ArticleTable = props => {
@@ -18,7 +19,7 @@ const ArticleTable = props => {
     const handleCommentModalShow = () => setAddCommentModalShow(true)
     const handleCommentModalClose = () => {
         setAddCommentModalShow(false)
-        props.showAll()
+        props.display === "all" ? props.showAll() : props.getFavorites()
     }
 
     // Favorites Modal State
@@ -26,7 +27,15 @@ const ArticleTable = props => {
     const handleFavoritesModalShow = () => setFavoritesModalShow(true)
     const handleFavoritesModalClose = () => {
         setFavoritesModalShow(false)
-        props.showAll()
+        props.display === "all" ? props.showAll() : props.getFavorites()
+    }
+    
+    // UNFavorites Modal State
+    const [unFavoriteModalShow, setUnFavoriteModalShow] = useState(false);
+    const handleUnFavoriteModalShow = () => setUnFavoriteModalShow(true)
+    const handleUnFavoriteModalClose = () => {
+        setUnFavoriteModalShow(false)
+        props.display === "all" ? props.showAll() : props.getFavorites()
     }
 
     // Deleted Modal State
@@ -34,7 +43,7 @@ const ArticleTable = props => {
     const handleDeletedModalShow = () => setDeletedModalShow(true)
     const handleDeletedModalClose = () => {
         setDeletedModalShow(false)
-        props.showAll()
+        props.display === "all" ? props.showAll() : props.getFavorites()
     }
 
     async function getCommentsByArticle(id) {
@@ -45,7 +54,7 @@ const ArticleTable = props => {
     }
 
     async function updateFavorites(id, isFavorite) {
-        setFavoritesModalShow(true)
+        // setFavoritesModalShow(true)
         let article = await Axios({
             method: 'put',
             url: `/api/articles/${id}`,
@@ -102,7 +111,7 @@ const ArticleTable = props => {
                             {(article.isFavorite === true) ? 
                                 
                                 <i style={styles.icon} className="p-1 fas fa-star" onClick={() => {
-                                    updateFavorites(article._id, false).then(setFavoritesModalShow(true))
+                                    updateFavorites(article._id, false).then(setUnFavoriteModalShow(true))
                                 }}></i>
                                 :
                                 <i style={styles.icon} className="p-1 far fa-star" onClick={() => {
@@ -149,6 +158,12 @@ const ArticleTable = props => {
                 show={deletedModalShow}
                 handleClose={handleDeletedModalClose}
                 handleShow={handleDeletedModalShow}    
+            />
+
+            <UnFavoriteModal 
+                show={unFavoriteModalShow}
+                handleClose={handleUnFavoriteModalClose}
+                handleShow={handleUnFavoriteModalShow}    
             />
 
             <AddToFavoritesModal
