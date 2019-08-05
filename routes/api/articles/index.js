@@ -6,6 +6,7 @@ const updateArticleById = require('./updateArticleById');
 const getFavorites = require('./getFavorites');
 const getCommentById = require('./getCommentById');
 const deleteArticleById = require('./deleteArticleById')
+const deleteCommentById = require('./deleteCommentById')
 
 // Tested wroking
 // Get all articles
@@ -29,6 +30,8 @@ articles.put('/:id', updateArticleById);
 
 
 articles.get('/comments/:id', getCommentById)
+
+articles.delete('/comments/:id', deleteCommentById)
 
 articles.delete('/:id', deleteArticleById)
 
