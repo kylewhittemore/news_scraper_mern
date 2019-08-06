@@ -17,3 +17,5 @@ The delete comment route was added to the API, but I would like to finish the Ap
 Implement a "clear saved data" function so that the user (or developer) can re-scrape and remove any deletions, comments or favorites.
 
 Implement multiple users so that they can personalize their own article list
+
+Implement pagination of the article list to avoid loading more than a certain number of articles
