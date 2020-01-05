@@ -2,6 +2,9 @@
 A MERN stack implementation of a simple news scraper
 The source scraped was The Hacker Noon webpage
 
+# Deployed Link:
+[HackerNoon Article Scraper](https://radiant-fjord-24408.herokuapp.com/)
+
 # Technology used:
 Implemented the full MERN stack: Mongoose, Express, React, Node
 react-bootstrap npm package for UI
